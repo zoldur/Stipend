@@ -41,8 +41,8 @@ Group=root
 
 Type=forking
 
-ExecStart=$COIN_DAEMON -daemon -conf=$CONFIGFOLDER/$CONFIG_FILE -datadir=$CONFIGFOLDER -reindex
-ExecStop=-$COIN_CLI -conf=$CONFIGFOLDER/$CONFIG_FILE -datadir=$CONFIGFOLDER stop
+ExecStart=$COIN_DAEMON -daemon
+ExecStop=-$COIN_CLI stop
 
 Restart=always
 PrivateTmp=true
