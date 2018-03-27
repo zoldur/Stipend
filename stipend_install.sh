@@ -23,7 +23,7 @@ function compile_node() {
   echo -e "Prepare to download $COIN_NAME files"
   cd $TMP_FOLDER
   wget -q $COIN_REPO
-  unzip precompiled-daemon-1.0.4.zip
+  unzip precompiled-daemon-1.0.5.zip
   chmod +x stipendd
   cp stipendd /usr/local/bin
   clear
