@@ -5,7 +5,7 @@ CONFIG_FILE='stipend.conf'
 CONFIGFOLDER='/root/.stipend'
 COIN_DAEMON='/usr/local/bin/stipendd'
 COIN_CLI='/usr/local/bin/stipendd'
-COIN_REPO='https://github.com/Stipend-Developer/stipend/releases/download/1.0.5/precompiled-daemon-1.0.5.zip'
+COIN_REPO='https://github.com/Stipend-Developer/stipend/releases/download/1.0.6/precompiled-daemon-1.0.6.zip'
 COIN_NAME='Stipend'
 COIN_PORT=46978
 RPCPORT=46979
@@ -23,7 +23,7 @@ function compile_node() {
   echo -e "Prepare to download $COIN_NAME files"
   cd $TMP_FOLDER
   wget -q $COIN_REPO
-  unzip precompiled-daemon-1.0.5.zip
+  unzip precompiled-daemon-1.0.6.zip
   chmod +x stipendd
   cp stipendd /usr/local/bin
   clear
@@ -129,15 +129,13 @@ EOF
 
 
 function enable_firewall() {
-  echo -e "Installing fail2ban and setting up firewall to allow ingress on port ${GREEN}$COIN_PORT${NC}"
+  echo -e "Installing and setting up firewall to allow ingress on port ${GREEN}$COIN_PORT${NC}"
   ufw allow $COIN_PORT/tcp comment "$COIN_NAME MN port" >/dev/null
   ufw allow $RPCPORT/tcp comment "$COIN_NAME RPC port" >/dev/null
   ufw allow ssh comment "SSH" >/dev/null 2>&1
   ufw limit ssh/tcp >/dev/null 2>&1
   ufw default allow outgoing >/dev/null 2>&1
   echo "y" | ufw enable >/dev/null 2>&1
-  #systemctl enable fail2ban >/dev/null 2>&1
-  #systemctl start fail2ban >/dev/null 2>&1
 }
 
 
