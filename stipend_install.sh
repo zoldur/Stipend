@@ -116,14 +116,11 @@ bind=$NODEIP
 masternode=1
 masternodeaddr=$NODEIP:$COIN_PORT
 masternodeprivkey=$COINKEY
-addnode=90.149.212.217:46978
-addnode=59.18.162.74:46978
-addnode=195.174.177.20:46978
-addnode=34.225.25.154:46978
-addnode=52.45.189.6:46978
-addnode=34.232.249.188:46978
-addnode=34.231.228.73:46978
-addnode=34.239.99.171:46978
+addnode=spd01.mn4all.com
+addnode=spd02.mn4all.com
+addnode=spd03.mn4all.com
+addnode=spd04.mn4all.com
+addnode=spd05.mn4all.com
 EOF
 }
 
