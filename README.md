@@ -1,8 +1,8 @@
 # Stipend
 Shell script to install a [Stipend Masternode](http://stipend.me) on a Linux server running Ubuntu 16.04. Use it on your own risk.  
-The script will install Stipend version **1.0.6**
-
+The script will install Stipend version **1.0.7**
 ***
+
 ## Installation:  
 
 wget -q https://raw.githubusercontent.com/zoldur/Stipend/master/stipend_install.sh  
@@ -29,18 +29,14 @@ After the MN is up and running, you need to configure the desktop wallet accordi
 * Reward %: leave blank  
 9. Click **OK** to add the masternode  
 10. Click **Start All**  
-
 ***
 
 ## Usage:  
-
 ```
 stipendd masternode status
 stipendd getinfo
 ```  
-
 Also, if you want to check/start/stop **Stipend** , run one of the following commands as **root**:
-
 ``` 
 systemctl status Stipend #To check the service is running.  
 systemctl start Stipend #To start Stipend service.  
