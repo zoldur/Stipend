@@ -1,6 +1,6 @@
 # Stipend
 Shell script to install a [Stipend Masternode](http://stipend.me) on a Linux server running Ubuntu 16.04. Use it on your own risk.  
-The script will install Stipend version **1.0.7**
+The script will install Stipend version **1.0.8**
 ***
 
 ## Installation:  
