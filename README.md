@@ -31,7 +31,7 @@ After the MN is up and running, you need to configure the desktop wallet accordi
 10. Click **Start All**  
 ***
 
-## Usage:  
+## Usage
 ```
 stipendd masternode status
 stipendd getinfo
@@ -45,10 +45,24 @@ systemctl is-enabled Stipend #To check whetether Stipend service is enabled on b
 ```  
 ***
 
+## Masternode update
+In order to update your Masternode to version 1.0.9, please run the following commands:
+```
+cd /tmp
+wget https://github.com/Stipend-Developer/stipend/releases/download/1.0.9/precompiled-daemon-1.0.9.zip
+unzip precompiled-daemon-1.0.9.zip
+systemctl stop Stipend
+mv stipendd /usr/local/bin
+systemctl start Stipend
+rm precompiled-daemon-1.0.9.zip
+cd -
+```
+
 ## Donations:
   
 Any donation is highly appreciated  
 
-**BTC**: 1BzeQ12m4zYaQKqysGNVbQv1taN7qgS8gY  
+**SPD**: SQqC7sfq1ZEswFoFkK4zcauv3X2UVTP5dH  
+**BTC**: 3MQLEcHXVvxpmwbB811qiC1c6g21ZKa7Jh  
 **ETH**: 0x39d10fe57611c564abc255ffd7e984dc97e9bd6d  
-**LTC**: LXrWbfeejNQRmRvtzB6Te8yns93Tu3evGf  
+**LTC**: LNZpK4rCd1JVSB3rGKTAnTkudV9So9zexB
