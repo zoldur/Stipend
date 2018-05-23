@@ -1,6 +1,6 @@
 # Stipend
 Shell script to install a [Stipend Masternode](http://stipend.me) on a Linux server running Ubuntu 16.04. Use it on your own risk.  
-The script will install Stipend version **2.0.0.1**
+The script will install Stipend version **2.0.0.2**
 ***
 
 ## Installation:  
@@ -46,15 +46,15 @@ systemctl is-enabled Stipend #To check whetether Stipend service is enabled on b
 ***
 
 ## Masternode update
-In order to update your Masternode to version 2.0.0.1, please run the following commands:
+In order to update your Masternode to version 2.0.0.2, please run the following commands:
 ```
 cd /tmp
-wget -N https://github.com/Stipend-Developer/stipend/releases/download/2.0.0.1/precompiled-daemon-2.0.0.1.zip
-unzip precompiled-daemon-2.0.0.1.zip
+wget -N https://github.com/Stipend-Developer/stipend/releases/download/2.0.0.2/precompiled-daemon-2.0.0.2.zip
+unzip precompiled-daemon-2.0.0.2.zip
 systemctl stop Stipend
 mv stipendd /usr/local/bin
 systemctl start Stipend
-rm precompiled-daemon-2.0.0.1.zip
+rm precompiled-daemon-2.0.0.2.zip
 cd -
 ```
 
