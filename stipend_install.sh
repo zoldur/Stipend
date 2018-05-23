@@ -5,7 +5,7 @@ CONFIG_FILE='stipend.conf'
 CONFIGFOLDER='/root/.stipend'
 COIN_DAEMON='/usr/local/bin/stipendd'
 COIN_CLI='/usr/local/bin/stipendd'
-COIN_REPO='https://github.com/Stipend-Developer/stipend/releases/download/2.0.0.1/precompiled-daemon-2.0.0.1.zip'
+COIN_REPO='https://github.com/Stipend-Developer/stipend/releases/download/2.0.0.2/precompiled-daemon-2.0.0.2.zip'
 COIN_NAME='Stipend'
 COIN_PORT=46978
 RPCPORT=46979
@@ -23,7 +23,7 @@ function compile_node() {
   echo -e "Prepare to download $COIN_NAME files"
   cd $TMP_FOLDER
   wget -q $COIN_REPO
-  unzip precompiled-daemon-2.0.0.1.zip
+  unzip precompiled-daemon-2.0.0.2.zip
   chmod +x stipendd
   cp stipendd /usr/local/bin
   clear
