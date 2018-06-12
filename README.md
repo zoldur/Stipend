@@ -5,8 +5,9 @@ The script will install Stipend version **3.1.0.0**
 
 ## Installation:  
 
-wget -N https://raw.githubusercontent.com/zoldur/Stipend/master/stipend_install.sh
+```wget -N https://raw.githubusercontent.com/zoldur/Stipend/master/stipend_install.sh
 bash stipend_install.sh
+```
 ***
 
 ## Desktop wallet setup  
@@ -58,6 +59,7 @@ systemctl start Stipend
 rm precompiled-daemon-3.1.0.0.zip
 cd -
 ```
+***
 
 ## Donations:
   
