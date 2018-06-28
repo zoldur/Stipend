@@ -5,7 +5,8 @@ The script will install Stipend version **4.0.0.0**
 
 ## Installation:  
 
-```wget -N https://raw.githubusercontent.com/zoldur/Stipend/master/stipend_install.sh
+```
+wget -N https://raw.githubusercontent.com/zoldur/Stipend/master/stipend_install.sh
 bash stipend_install.sh
 ```
 ***
