@@ -1,6 +1,6 @@
 # Stipend
 Shell script to install a [Stipend Masternode](http://stipend.me) on a Linux server running Ubuntu 16.04. Use it on your own risk.  
-The script will install Stipend version **5.1.0.0**
+The script will install Stipend new version **1.0.0.0**
 ***
 
 ## Installation:  
@@ -35,8 +35,8 @@ After the MN is up and running, you need to configure the desktop wallet accordi
 
 ## Usage
 ```
-stipendd masternode status
-stipendd getinfo
+stipend-cli masternode status
+stipend-cli getinfo
 ```  
 Also, if you want to check/start/stop **Stipend** , run one of the following commands as **root**:
 ``` 
@@ -45,21 +45,6 @@ systemctl start Stipend #To start Stipend service.
 systemctl stop Stipend #To stop Stipend service.  
 systemctl is-enabled Stipend #To check whetether Stipend service is enabled on boot or not.  
 ```  
-***
-
-## Masternode update
-In order to update your Masternode to version 5.1.0.0, please run the following commands:
-```
-cd /tmp
-wget -N https://github.com/Stipend-Developer/stipend/releases/download/5.1.0.0/precompiled-daemon-5.1.0.0.zip
-unzip precompiled-daemon-5.1.0.0.zip
-systemctl stop Stipend
-chmod +x stipendd
-mv stipendd /usr/local/bin
-systemctl start Stipend
-rm precompiled-daemon-5.1.0.0.zip
-cd -
-```
 ***
 
 ## Donations:

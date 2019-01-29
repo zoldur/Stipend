@@ -180,12 +180,13 @@ if [[ $EUID -ne 0 ]]; then
    exit 1
 fi
 
+# Stop the node
+systemctl stop $COIN_NAME.service
+
 if [ -n "$(pidof $COIN_DAEMON)" ] || [ -e "$COIN_DAEMOM" ] ; then
   echo -e "${RED}$COIN_NAME is already installed.${NC}"
   exit 1
 fi
-# Stop the node
-systemctl stop $COIN_NAME.service
 }
 
 function prepare_system() {
