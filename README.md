@@ -51,7 +51,7 @@ systemctl is-enabled Stipend #To check whetether Stipend service is enabled on b
   
 Any donation is highly appreciated  
 
-**SPD**: SQqC7sfq1ZEswFoFkK4zcauv3X2UVTP5dH  
+**SPD**: sdAj37uX5Ka4cBCjEWeADSq3PRkCt5HQgZ  
 **BTC**: 3MQLEcHXVvxpmwbB811qiC1c6g21ZKa7Jh  
 **ETH**: 0x39d10fe57611c564abc255ffd7e984dc97e9bd6d  
 **LTC**: LNZpK4rCd1JVSB3rGKTAnTkudV9So9zexB
