@@ -2,10 +2,12 @@
 
 TMP_FOLDER=$(mktemp -d)
 CONFIG_FILE='stipend.conf'
-CONFIGFOLDER='/root/.stipend'
-COIN_DAEMON='/usr/local/bin/stipendd'
-COIN_CLI='/usr/local/bin/stipendd'
-COIN_REPO='https://github.com/Stipend-Developer/stipend/releases/download/5.1.0.0/precompiled-daemon-5.1.0.0.zip'
+CONFIGFOLDER='/root/.stipend-core'
+COIN_PATH='/usr/local/bin/'
+COIN_DAEMON='stipendd'
+COIN_CLI='stipend-cli'
+COIN_TGZ='https://github.com/Stipend-Developer/stipend-core/releases/download/spd-v1.0.0.0/stipend-ubuntu-16.04-node.zip'
+COIN_ZIP=$(echo $COIN_TGZ | awk -F'/' '{print $NF}')
 COIN_NAME='Stipend'
 COIN_PORT=46978
 RPCPORT=46979
@@ -22,11 +24,12 @@ NC='\033[0m'
 function compile_node() {
   echo -e "Prepare to download $COIN_NAME files"
   cd $TMP_FOLDER
-  wget -q $COIN_REPO
-  unzip precompiled-daemon-5.1.0.0.zip
-  chmod +x stipendd
-  cp stipendd /usr/local/bin
+  wget -q $COIN_TGZ
+  unzip -x $COIN_ZIP 2>&1 >/dev/null
+  cp stipend-ubuntu-16.04-node/usr/local/bin/stip* $COIN_PATH
   clear
+  cd - >/dev/null 2>&1
+  rm -rf $TMP_FOLDER >/dev/null 2>&1
 }
 
 function configure_systemd() {
@@ -40,9 +43,10 @@ User=root
 Group=root
 
 Type=forking
+#PIDFile=$CONFIGFOLDER/$COIN_NAME.pid
 
-ExecStart=$COIN_DAEMON -daemon
-ExecStop=-$COIN_CLI stop
+ExecStart=$COIN_PATH$COIN_DAEMON -daemon -conf=$CONFIGFOLDER/$CONFIG_FILE -datadir=$CONFIGFOLDER
+ExecStop=-$COIN_PATH$COIN_CLI -conf=$CONFIGFOLDER/$CONFIG_FILE -datadir=$CONFIGFOLDER stop
 
 Restart=always
 PrivateTmp=true
@@ -72,8 +76,8 @@ EOF
 
 function create_config() {
   mkdir $CONFIGFOLDER >/dev/null 2>&1
-  RPCUSER=$(pwgen -s 8 1)
-  RPCPASSWORD=$(pwgen -s 15 1)
+  RPCUSER=$(tr -cd '[:alnum:]' < /dev/urandom | fold -w10 | head -n1)
+  RPCPASSWORD=$(tr -cd '[:alnum:]' < /dev/urandom | fold -w22 | head -n1)
   cat << EOF > $CONFIGFOLDER/$CONFIG_FILE
 rpcuser=$RPCUSER
 rpcpassword=$RPCPASSWORD
@@ -112,45 +116,10 @@ function update_config() {
   cat << EOF >> $CONFIGFOLDER/$CONFIG_FILE
 logintimestamps=1
 maxconnections=256
-bind=$NODEIP
+#bind=$NODEIP
 masternode=1
-masternodeaddr=$NODEIP:$COIN_PORT
+externalip=$NODEIP:$COIN_PORT
 masternodeprivkey=$COINKEY
-addnode=185.233.105.89:46978
-addnode=185.233.105.117:46978
-addnode=185.233.105.98:46978
-addnode=185.233.105.109:46978
-addnode=185.233.104.196:46978
-addnode=94.16.122.251:46978
-addnode=185.233.104.219:46978
-addnode=185.233.106.12:46978
-addnode=185.233.106.160:46978
-addnode=185.233.106.249:46978
-addnode=185.233.107.150:46978
-addnode=94.16.123.6:46978
-addnode=185.233.107.159:46978
-addnode=185.233.107.160:46978
-addnode=185.233.107.162:46978
-addnode=185.243.8.150:46978
-addnode=185.243.8.152:46978
-addnode=185.243.8.151:46978
-addnode=185.243.8.159:46978
-addnode=185.243.8.154:46978
-addnode=94.16.116.16:46978
-addnode=94.16.116.18:46978
-addnode=94.16.116.19:46978
-addnode=94.16.116.20:46978
-addnode=94.16.116.33:46978
-
-addnode=[2001:0:9d38:6ab8:38f2:eba:7fb7:ef65]:46978
-addnode=[2001:0:9d38:6ab8:3ca0:1ec1:9291:c00f]:56179
-addnode=[2001:0:9d38:6ab8:3cd0:1063:b195:c78b]:46978
-addnode=[2001:0:9d38:6abd:1c03:11dd:a422:2cf7]:46978
-addnode=[2001:0:9d38:90d7:14e0:385d:4b25:fa8c]:46978
-addnode=[2001:0:9d38:90d7:3ce6:11c5:6e7e:c45a]:46978
-addnode=[2001:41d0:1008:1831::]:46978
-
-addnode=spd.overemo.com
 EOF
 }
 
@@ -215,6 +184,8 @@ if [ -n "$(pidof $COIN_DAEMON)" ] || [ -e "$COIN_DAEMOM" ] ; then
   echo -e "${RED}$COIN_NAME is already installed.${NC}"
   exit 1
 fi
+# Stop the node
+systemctl stop $COIN_NAME.service
 }
 
 function prepare_system() {
